@@ -9,15 +9,16 @@ var SchemaForm = require('../src/SchemaForm');
 require('react-select/less/select.less');
 var Select = require('react-select');
 var $ = require('jquery');
-var Ace = require('react-ace');
+import AceEditor from 'react-ace';
+require('brace/ext/language_tools');
 require('brace/mode/json');
 require('brace/theme/github');
 require('rc-select/assets/index.css');
 import RcSelect from 'react-schema-form-rc-select/lib/RcSelect';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
-const ThemeManager = require('material-ui/lib/styles/theme-manager');
-const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import lightRawTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
 
 var ExamplePage = React.createClass({
@@ -55,7 +56,7 @@ var ExamplePage = React.createClass({
             schemaJson: '',
             formJson: '',
             selected: '',
-            muiTheme: ThemeManager.getMuiTheme(LightRawTheme)
+            muiTheme: getMuiTheme(lightRawTheme)
         };
     },
 
@@ -159,9 +160,9 @@ var ExamplePage = React.createClass({
                             </Select>
                         </div>
                         <h3>Form</h3>
-                        <Ace mode="json" theme="github" height="300px" width="800px" onChange={this.onFormChange} name="aceForm" value={this.state.formJson} editorProps={{$blockScrolling: true}}/>
+                        <AceEditor mode="json" theme="github" height="300px" width="800px" onChange={this.onFormChange} name="aceForm" value={this.state.formJson} editorProps={{$blockScrolling: true}}/>
                         <h3>Schema</h3>
-                        <Ace mode="json" theme="github" height="300px" width="800px" onChange={this.onSchemaChange} name="aceSchema" value={this.state.schemaJson} editorProps={{$blockScrolling: true}}/>
+                        <AceEditor mode="json" theme="github" height="300px" width="800px" onChange={this.onSchemaChange} name="aceSchema" value={this.state.schemaJson} editorProps={{$blockScrolling: true}}/>
                     </div>
                 </div>
             </div>
@@ -170,4 +171,3 @@ var ExamplePage = React.createClass({
 });
 
 module.exports = ExamplePage;
-

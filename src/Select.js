@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import ComposedComponent from './ComposedComponent';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-const SelectField = require('material-ui/lib/select-field');
+import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField';
 
 class Select extends React.Component {
 
@@ -12,7 +12,8 @@ class Select extends React.Component {
         super(props);
         this.onSelected = this.onSelected.bind(this);
         this.state = {
-            currentValue: this.props.form.titleMap != null ? this.props.form.titleMap[0].value : ""
+            currentValue: this.props.model[this.props.form.key]
+            || (this.props.form.titleMap != null ? this.props.form.titleMap[0].value : "")
         };
     }
 
